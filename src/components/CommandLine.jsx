@@ -13,7 +13,7 @@ function CommandLine({ onSubmit, onCleanLocal }) {
     <form onSubmit={(event) => onSubmit(true, event)} className="command_line">
       <label className='input_container'>
         <p>Comandos:</p>
-        <input name="cell" className='input' type="text" maxLength={3} />
+        <input name="cell" className='input' type="text" maxLength={3} required />
       </label>
       <button className='btn' type='submit'>Ejecutar</button>
       <button className='btn' type='button' onClick={onClean}>Limpiar</button>

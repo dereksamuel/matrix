@@ -27,7 +27,7 @@ function useShips(length, shipLength) {
     }
   };
 
-  const evaluatePointAvailability = (point, shipLength) => {
+  const checkPointAvailability = (point, shipLength) => {
     const number = point.slice(1);
     const word = point[0];
     const isLeft = Math.abs(+number - 10) < shipLength;
@@ -73,7 +73,7 @@ function useShips(length, shipLength) {
   function generateCoordinates () {
     for (const point of points) {
       const number = point.slice(1);
-      const availability = evaluatePointAvailability(point, shipLength);
+      const availability = checkPointAvailability(point, shipLength);
       let isVertical = Boolean(Math.random() > 0.5);
       let direction = Math.abs(+number - 10) < shipLength ? 'left' : 'right';
       const coordinates = [];
