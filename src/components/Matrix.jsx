@@ -33,6 +33,12 @@ function Matrix() {
     }
   }, [selectedCells]);
 
+  useEffect(() => {
+    if (destroyedShips.size === 5) {
+      alert('¡Ganaste!');
+    }
+  }, [destroyedShips]);
+
   for (let i = 0; i < 10; i++) {
     const cells = [];
     for (let j = 0; j < 10; j++) {
