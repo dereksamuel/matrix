@@ -31,6 +31,7 @@ function Matrix() {
         setDestroyedShips(previousState => new Set([...previousState, ss]));
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCells]);
 
   useEffect(() => {
