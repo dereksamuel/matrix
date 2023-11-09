@@ -9,10 +9,13 @@ function useShips(length, shipLength) {
 
   const generateRandomPoint = useCallback(() => {
     const point = Math.floor(Math.random() * 10) === 0 ? 1 : Math.floor(Math.random() * 10);
-    console.log(Math.floor(Math.random() * 10));
     points.add(`${alphabet[point]}${point === 0 ? 1 : point}`);
     return `${alphabet[point]}${point}`;
   }, [points]);
+
+  const hasDuplicates = (array) => {
+    return (new Set(array)).size !== array.length;
+  };
 
   const generatePoints = (startedIndex = 0) => {
     for (let shipIndex = startedIndex; shipIndex < length; shipIndex++) {
@@ -102,9 +105,22 @@ function useShips(length, shipLength) {
       generatePoints();
       generateCoordinates();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(ships);
+  useEffect(() => {
+    if (shipsState.length === 5) {
+      const newShipsState = shipsState.map((ship) => ship.join(','));
+      const finalArray = newShipsState.join(',').split(',');
+      if (hasDuplicates(finalArray)) {
+        setShips([]);
+        points.clear();
+        generatePoints();
+        generateCoordinates();
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shipsState]);
 
   return [shipsState, points];
 }
