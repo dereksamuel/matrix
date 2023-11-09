@@ -62,8 +62,7 @@ function Matrix() {
   }
 
   const onCleanLocal = () => {
-    setSelectedCells([]);
-    setDestroyedShips(new Set());
+    location.reload();
   };
 
   return (

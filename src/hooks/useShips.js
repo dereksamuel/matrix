@@ -9,7 +9,8 @@ function useShips(length, shipLength) {
 
   const generateRandomPoint = useCallback(() => {
     const point = Math.floor(Math.random() * 10) === 0 ? 1 : Math.floor(Math.random() * 10);
-    points.add(`${alphabet[point]}${point}`);
+    console.log(Math.floor(Math.random() * 10));
+    points.add(`${alphabet[point]}${point === 0 ? 1 : point}`);
     return `${alphabet[point]}${point}`;
   }, [points]);
 
@@ -70,7 +71,6 @@ function useShips(length, shipLength) {
     for (const point of points) {
       const number = point.slice(1);
       const availability = evaluatePointAvailability(point, shipLength);
-      console.log(availability, point);
       let isVertical = Boolean(Math.random() > 0.5);
       let direction = Math.abs(+number - 10) < shipLength ? 'left' : 'right';
       const coordinates = [];
